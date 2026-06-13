@@ -330,11 +330,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ---------- 마지막 인사 ---------- */
 .closing { position: relative; }
 .closing__photo { position: relative; }
-.closing__photo img { width: 100%; height: 100svh; min-height: 560px; object-fit: cover; }
-.closing__scrim { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(40,32,24,.05) 30%, rgba(38,30,22,.42) 62%, rgba(30,24,18,.66) 100%); }
-.closing__text { position: absolute; left: 0; right: 0; bottom: 64px; text-align: center; color: #fff; padding: 0 30px; text-shadow: 0 2px 16px rgba(0,0,0,.3); }
-.closing__body { font-family: var(--myeong); font-size: 16px; line-height: 2.1; }
-.closing__sign { margin-top: 22px; font-family: var(--myeong); font-size: 15px; letter-spacing: .06em; }
+.closing__photo img { width: 100%; height: 100svh; min-height: 560px; object-fit: cover; object-position: 50% 100%; }
+.closing__scrim { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(251,249,245,.78) 0%, rgba(251,249,245,.35) 26%, rgba(251,249,245,0) 44%); }
+.closing__text { position: absolute; left: 0; right: 0; top: 58px; text-align: center; color: var(--ink); padding: 0 34px; }
+.closing__body { font-family: var(--serif); font-size: 16px; line-height: 2.15; color: var(--ink); }
+.closing__sign { margin-top: 24px; font-family: var(--serif); font-size: 15px; letter-spacing: .06em; color: var(--ink-soft); }
 
 /* ---------- 공유 ---------- */
 .share { background: var(--paper); text-align: center; padding: 70px 32px 90px; }
