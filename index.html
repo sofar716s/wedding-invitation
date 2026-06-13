@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>김희준 ♡ 한예빈 결혼합니다</title>
+  <meta name="description" content="2026년 10월 18일 일요일 오후 5시 · 라시따시어터 1층 그랜드볼룸" />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <!-- Open Graph (카카오톡 공유 미리보기) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="김희준 ♡ 한예빈 결혼합니다" />
+  <meta property="og:description" content="2026년 10월 18일 일요일 오후 5시 · 라시따시어터 1층 그랜드볼룸" />
+  <meta property="og:image" content="assets/images/hero.jpg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===== 인트로 오프닝 ===== -->
+  <div id="intro" class="intro">
+    <div class="intro__inner">
+      <p class="intro__label">THE WEDDING DAY</p>
+      <p class="intro__names">김희준 <span>·</span> 한예빈</p>
+      <p class="intro__date">2026 . 10 . 18</p>
+    </div>
+  </div>
+
+  <main class="frame">
+
+    <!-- ===== 1. 커버 ===== -->
+    <section class="cover" id="cover">
+      <div class="cover__media reveal">
+        <img src="assets/images/hero.jpg" alt="신랑 김희준 신부 한예빈" />
+      </div>
+      <div class="cover__info">
+        <p class="cover__label reveal">THE WEDDING OF</p>
+        <h1 class="cover__names reveal">김희준 <span class="amp">&amp;</span> 한예빈</h1>
+        <div class="cover__meta reveal">
+          <p class="cover__date">2026. 10. 18. SUN &middot; 5:00 PM</p>
+          <p class="cover__place">라시따시어터 그랜드볼룸</p>
+        </div>
+      </div>
+      <div class="cover__scroll" aria-hidden="true"><span></span></div>
+    </section>
+
+    <!-- ===== 2. 초대글 ===== -->
+    <section class="sec invite reveal">
+      <p class="sec__eyebrow">INVITATION</p>
+      <h2 class="sec__title">소중한 분들을 초대합니다</h2>
+      <div class="sec__ornament">✦</div>
+      <p class="invite__body">
+        두 사람이 마주 본 시간이 모여<br />
+        이제 같은 곳을 바라보게 되었습니다.<br /><br />
+        서로의 모자란 부분을 채우고<br />
+        기쁜 날에도 흐린 날에도 함께 걸으며<br />
+        오래도록 서로의 곁을 지키기로 했습니다.<br /><br />
+        저희 두 사람의 새로운 시작을<br />
+        따뜻한 마음으로 축복해 주시면<br />
+        더없는 기쁨으로 간직하겠습니다.
+      </p>
+
+      <div class="invite__hosts">
+        <p><span class="host__parents">김한상 &middot; 이송도</span><span class="host__rel">의 장남</span> <b>김희준</b></p>
+        <p><span class="host__parents">한성구 &middot; 윤정연</span><span class="host__rel">의 장녀</span> <b>한예빈</b></p>
+      </div>
+    </section>
+
+    <!-- ===== 3. 캘린더 / 디데이 ===== -->
+    <section class="sec date reveal">
+      <p class="sec__eyebrow">SAVE THE DATE</p>
+      <h2 class="sec__title">2026년 10월 18일 일요일<br />오후 5시</h2>
+
+      <div class="calendar" id="calendar"></div>
+
+      <div class="dday" id="dday">
+        <div class="dday__unit"><b id="dd-day">--</b><span>DAYS</span></div>
+        <div class="dday__unit"><b id="dd-hour">--</b><span>HOUR</span></div>
+        <div class="dday__unit"><b id="dd-min">--</b><span>MIN</span></div>
+        <div class="dday__unit"><b id="dd-sec">--</b><span>SEC</span></div>
+      </div>
+      <p class="dday__text" id="dday-text"></p>
+    </section>
+
+    <!-- ===== 4. 갤러리 ===== -->
+    <section class="sec gallery reveal">
+      <p class="sec__eyebrow">GALLERY</p>
+      <h2 class="sec__title">우리의 순간들</h2>
+      <div class="gallery__grid" id="galleryGrid"></div>
+      <button class="gallery__more" id="galleryMore" type="button" hidden>사진 <b>더보기</b></button>
+    </section>
+
+    <!-- ===== 5. 오시는 길 ===== -->
+    <section class="sec location reveal">
+      <p class="sec__eyebrow">LOCATION</p>
+      <h2 class="sec__title">오시는 길</h2>
+      <div class="sec__ornament">✦</div>
+      <p class="location__name">라시따시어터 <span>1층 그랜드볼룸</span></p>
+      <p class="location__addr">서울 서초구 매헌로 16 (하이브랜드 패션관)</p>
+      <p class="location__tel"><a href="tel:0221552222">02 - 2155 - 2222</a></p>
+
+      <div class="map" id="map">
+        <div class="map__static">
+          <span class="map__pin" aria-hidden="true"></span>
+          <p class="map__pname">라시따시어터</p>
+          <p class="map__psub">서울 서초구 매헌로 16</p>
+          <p class="map__pnote">아래 버튼을 눌러 길찾기 앱에서 열어보세요</p>
+        </div>
+      </div>
+      <div class="map__btns">
+        <a class="map__btn" href="https://map.naver.com/v5/search/라시따시어터" target="_blank" rel="noopener">네이버지도</a>
+        <a class="map__btn" href="https://map.kakao.com/link/search/라시따시어터" target="_blank" rel="noopener">카카오맵</a>
+        <a class="map__btn" href="https://tmap.life/routes?goalname=라시따시어터" target="_blank" rel="noopener">티맵</a>
+      </div>
+
+      <ul class="location__info">
+        <li>
+          <b>지하철</b>
+          <p>신분당선 <strong>양재시민의숲역 5번 출구</strong>에서 셔틀버스 운행<br />(예식 1시간 전부터 10분 간격)</p>
+        </li>
+        <li>
+          <b>버스</b>
+          <p>하이브랜드 또는 양곡도매시장 정류장 하차 후 라시따 A게이트 이용</p>
+        </li>
+        <li>
+          <b>주차</b>
+          <p>동시 1,000대 주차 가능 · 파랑 유도선(지하3층) / 분홍 유도선(타워주차장)</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===== 6. 마음 전하실 곳 ===== -->
+    <section class="sec gift reveal">
+      <p class="sec__eyebrow">ACCOUNT</p>
+      <h2 class="sec__title">마음 전하실 곳</h2>
+      <p class="gift__lead">
+        축하의 마음을 전해주실 분들을 위해<br />
+        마음 전하실 곳을 안내해 드립니다.
+      </p>
+
+      <div class="acc" id="accGroom">
+        <button class="acc__head" type="button">
+          <span>신랑측 계좌번호</span>
+          <i class="acc__arrow"></i>
+        </button>
+        <div class="acc__body">
+          <div class="acc__row">
+            <div class="acc__info">
+              <p class="acc__line"><span class="acc__role">신랑</span><b>김희준</b><span class="acc__bank">카카오뱅크</span></p>
+              <p class="acc__num">3333-06-9459601</p>
+            </div>
+            <button class="acc__copy" type="button" data-copy="3333069459601" data-label="신랑 김희준">복사</button>
+          </div>
+          <div class="acc__row">
+            <div class="acc__info">
+              <p class="acc__line"><b>김한상</b><span class="acc__bank">신한은행</span></p>
+              <p class="acc__num">110-420-106197<span class="acc__owner">예금주 김희준</span></p>
+            </div>
+            <button class="acc__copy" type="button" data-copy="110420106197" data-label="부 김한상">복사</button>
+          </div>
+          <div class="acc__row">
+            <div class="acc__info">
+              <p class="acc__line"><b>이송도</b><span class="acc__bank">국민은행</span></p>
+              <p class="acc__num">629302-01-267807<span class="acc__owner">예금주 김희준</span></p>
+            </div>
+            <button class="acc__copy" type="button" data-copy="62930201267807" data-label="모 이송도">복사</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc" id="accBride">
+        <button class="acc__head" type="button">
+          <span>신부측 계좌번호</span>
+          <i class="acc__arrow"></i>
+        </button>
+        <div class="acc__body">
+          <div class="acc__row">
+            <div class="acc__info">
+              <p class="acc__line"><span class="acc__role">신부</span><b>한예빈</b><span class="acc__bank">신한은행</span></p>
+              <p class="acc__num">110-420-006802</p>
+            </div>
+            <button class="acc__copy" type="button" data-copy="110420006802" data-label="신부 한예빈">복사</button>
+          </div>
+          <div class="acc__row">
+            <div class="acc__info">
+              <p class="acc__line"><b>한성구</b><span class="acc__bank">하나은행</span></p>
+              <p class="acc__num">472-910495-03507<span class="acc__owner">예금주 한예빈</span></p>
+            </div>
+            <button class="acc__copy" type="button" data-copy="47291049503507" data-label="부 한성구">복사</button>
+          </div>
+          <div class="acc__row">
+            <div class="acc__info">
+              <p class="acc__line"><b>윤정연</b><span class="acc__bank">농협은행</span></p>
+              <p class="acc__num">207174-51-136561</p>
+            </div>
+            <button class="acc__copy" type="button" data-copy="20717451136561" data-label="모 윤정연">복사</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 8. 방명록 ===== -->
+    <section class="sec guest reveal">
+      <p class="sec__eyebrow">MESSAGE</p>
+      <h2 class="sec__title">축하 메시지</h2>
+      <p class="guest__lead">따뜻한 축하의 한마디를 남겨주세요.</p>
+
+      <ul class="guest__list" id="guestList"></ul>
+
+      <button class="guest__more" id="guestMore" type="button" hidden>이전 메시지 더보기</button>
+      <button class="guest__write" id="guestWrite" type="button">메시지 작성하기</button>
+    </section>
+
+    <!-- ===== 화환 안내 ===== -->
+    <section class="sec wreath reveal">
+      <p class="sec__eyebrow">FLOWER</p>
+      <h2 class="sec__title">축하 화환 안내</h2>
+      <div class="sec__ornament">✦</div>
+      <p class="wreath__lead">축하 화환을 보내주실 분들을 위해 아래 정보를 안내드립니다.</p>
+      <div class="wreath__card">
+        <div class="wreath__row"><span>받는 곳</span><b>라시따시어터 1층 그랜드볼룸</b></div>
+        <div class="wreath__row"><span>예식 일시</span><b>2026. 10. 18 (일) 오후 5시</b></div>
+        <div class="wreath__row"><span>문의</span><b><a href="tel:0221552222">02-2155-2222</a></b></div>
+      </div>
+    </section>
+
+    <!-- ===== 마지막 인사 ===== -->
+    <section class="closing reveal" id="closing">
+      <div class="closing__photo">
+        <img src="assets/images/closing.jpg" alt="감사합니다" />
+        <div class="closing__scrim"></div>
+        <div class="closing__text">
+          <p class="closing__body">
+            귀한 걸음으로 축복해 주신<br />
+            모든 분들께 깊이 감사드립니다.<br /><br />
+            처음 그 마음 그대로<br />
+            서로 아끼고 사랑하며 살겠습니다.
+          </p>
+          <p class="closing__sign">김희준 &middot; 한예빈 드림</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 10. 공유 기능 ===== -->
+    <section class="share reveal">
+      <div class="share__hearts">♡</div>
+      <p class="share__msg">신랑 &amp; 신부에게<br />축하 인사를 전해보세요</p>
+      <div class="share__btns">
+        <button class="share__btn share__btn--kakao" id="shareKakao" type="button">
+          카카오톡으로 청첩장 전하기
+        </button>
+        <button class="share__btn share__btn--link" id="shareLink" type="button">
+          청첩장 주소 복사하기
+        </button>
+      </div>
+      <p class="share__credit">Wedding invitation · 2026. 10. 18</p>
+    </section>
+
+  </main>
+
+  <!-- 음악 토글 -->
+  <button class="music" id="musicToggle" type="button" aria-label="배경음악 재생">
+    <span class="music__icon"></span>
+  </button>
+  <audio id="bgm" loop preload="auto" src="assets/music/bgm.mp3"></audio>
+
+  <!-- 갤러리 라이트박스 -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox__close" id="lbClose" aria-label="닫기">&times;</button>
+    <button class="lightbox__nav lightbox__prev" id="lbPrev" aria-label="이전">&#8249;</button>
+    <div class="lightbox__stage"><img id="lbImg" alt="" /></div>
+    <button class="lightbox__nav lightbox__next" id="lbNext" aria-label="다음">&#8250;</button>
+    <div class="lightbox__count" id="lbCount"></div>
+  </div>
+
+  <!-- 방명록 작성 모달 -->
+  <div class="modal" id="guestModal" aria-hidden="true">
+    <div class="modal__panel">
+      <h3 class="modal__title">축하 메시지 남기기</h3>
+      <input class="modal__input" id="gName" type="text" maxlength="12" placeholder="이름" />
+      <textarea class="modal__area" id="gMsg" maxlength="200" placeholder="축하의 마음을 전해주세요"></textarea>
+      <div class="modal__btns">
+        <button class="modal__btn modal__btn--ghost" id="gCancel" type="button">취소</button>
+        <button class="modal__btn modal__btn--fill" id="gSave" type="button">등록</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 토스트 -->
+  <div class="toast" id="toast"></div>
+
+  <!-- 카카오 / Firebase SDK는 키가 설정된 경우에만 js/main.js가 동적으로 불러옵니다. -->
+  <script src="js/main.js"></script>
+</body>
+</html>
