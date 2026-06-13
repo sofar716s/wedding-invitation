@@ -12,22 +12,20 @@
     shareTitle: '김희준 ♡ 한예빈 결혼합니다',
     shareDesc: '2026년 10월 18일 일요일 오후 5시\n라시따시어터 1층 그랜드볼룸',
 
-    // ▼▼▼ [1] 카카오 JavaScript 키 — 넣으면 '카카오톡 전하기' + 카카오맵이 켜집니다.
-    //         (https://developers.kakao.com → 내 애플리케이션 → 앱 키 → JavaScript 키)
-    kakaoJsKey: '',
+    // ▼▼▼ [1] 카카오 JavaScript 키 — '카카오톡 전하기' + 카카오맵 활성화
+    kakaoJsKey: '11a72bff610fba485eb712d84f3b1e47',
 
     // 예식장 좌표 (카카오맵 표시용)
     venue: { name: '라시따시어터', lat: 37.4695, lng: 127.0380 },
 
-    // ▼▼▼ [2] Firebase 설정 — 넣으면 방명록이 실제 DB에 저장됩니다. (비워두면 브라우저 임시저장)
-    //         (https://console.firebase.google.com → 프로젝트 설정 → 내 앱(웹) → SDK 설정)
+    // ▼▼▼ [2] Firebase 설정 — 방명록 실제 저장 (Firestore 'guestbook' 컬렉션)
     firebase: {
-      apiKey: '',
-      authDomain: '',
-      projectId: '',
-      storageBucket: '',
-      messagingSenderId: '',
-      appId: ''
+      apiKey: 'AIzaSyBa3vzzGwj32K4ecn5xsuHVdXfcjI6pxcg',
+      authDomain: 'wedding-30147.firebaseapp.com',
+      projectId: 'wedding-30147',
+      storageBucket: 'wedding-30147.firebasestorage.app',
+      messagingSenderId: '997245103079',
+      appId: '1:997245103079:web:267f2735bea955b5ad2b42'
     },
     // 갤러리: 폴더 저장 순서(01~26.jpg) → g01~g26.jpg, 3열 정사각 썸네일 + 더보기
     galleryInit: 12,
