@@ -162,7 +162,13 @@
       var f = CONFIG.gallery[i];
       lbImg.src = 'assets/images/gallery/' + f;          // 썸네일 즉시 표시(이미 캐시됨)
       var hi = new Image();
-      hi.onload = function () { if (cur === i) lbImg.src = 'assets/images/gallery/full/' + f; }; // 고해상도 원본으로 교체
+      hi.onload = function () {
+        if (cur === i) lbImg.src = 'assets/images/gallery/full/' + f; // 고해상도 원본으로 교체
+        [i + 1, i - 1].forEach(function (j) {                          // 인접 사진 미리 불러오기(넘길 때 버퍼링 방지)
+          var n = (j + CONFIG.gallery.length) % CONFIG.gallery.length;
+          (new Image()).src = 'assets/images/gallery/full/' + CONFIG.gallery[n];
+        });
+      };
       hi.src = 'assets/images/gallery/full/' + f;
       lbCount.textContent = (i + 1) + ' / ' + CONFIG.gallery.length;
       lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false');
@@ -205,7 +211,7 @@
     stage.addEventListener('touchmove', function (e) {
       if (mode === 'pinch' && e.touches.length === 2) {
         e.preventDefault();
-        scale = Math.max(1, Math.min(5, startScale * tdist(e.touches) / startDist));
+        scale = Math.max(1, Math.min(3,startScale * tdist(e.touches) / startDist));
         if (scale <= 1) { tx = 0; ty = 0; }
         clampPan(); applyT(false);
       } else if (mode === 'pan' && e.touches.length === 1) {
@@ -228,7 +234,7 @@
     lbImg.addEventListener('dblclick', function (e) { toggleZoom(e); });
     stage.addEventListener('wheel', function (e) {
       e.preventDefault();
-      scale = Math.max(1, Math.min(5, scale - e.deltaY * 0.0015));
+      scale = Math.max(1, Math.min(3,scale - e.deltaY * 0.0015));
       if (scale <= 1) { tx = 0; ty = 0; }
       clampPan(); applyT(false);
     }, { passive: false });
@@ -442,7 +448,7 @@
           content: {
             title: CONFIG.shareTitle,
             description: CONFIG.shareDesc,
-            imageUrl: location.origin + location.pathname.replace(/index\.html$/, '') + 'assets/images/hero.jpg',
+            imageUrl: location.origin + location.pathname.replace(/index\.html$/, '') + 'assets/images/share.jpg',
             link: { mobileWebUrl: url, webUrl: url }
           },
           buttons: [{ title: '청첩장 보기', link: { mobileWebUrl: url, webUrl: url } }]
