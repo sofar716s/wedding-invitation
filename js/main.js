@@ -196,15 +196,25 @@
     toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, 1900);
   }
   function copyText(text) {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      return navigator.clipboard.writeText(text);
-    }
-    return new Promise(function (res) {
-      var ta = document.createElement('textarea');
-      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
-      document.body.appendChild(ta); ta.select();
-      try { document.execCommand('copy'); } catch (e) {}
-      document.body.removeChild(ta); res();
+    return new Promise(function (resolve) {
+      function legacy() {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed'; ta.style.top = '0'; ta.style.left = '0'; ta.style.opacity = '0';
+        ta.setAttribute('readonly', '');
+        document.body.appendChild(ta);
+        ta.focus(); ta.select();
+        try { ta.setSelectionRange(0, ta.value.length); } catch (e) {}
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta);
+        resolve();
+      }
+      // 카카오톡 인앱 브라우저 등에서 clipboard API가 막히면 자동으로 execCommand로 대체
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { resolve(); }, legacy);
+      } else {
+        legacy();
+      }
     });
   }
   $$('.acc__copy').forEach(function (b) {
@@ -214,6 +224,14 @@
       });
     });
   });
+
+  // 오시는 길 - 주소 복사
+  var copyAddrBtn = $('#copyAddrBtn');
+  if (copyAddrBtn) {
+    copyAddrBtn.addEventListener('click', function () {
+      copyText(copyAddrBtn.dataset.addr).then(function () { toast('주소가 복사되었습니다'); });
+    });
+  }
 
   /* ---------- 방명록 (Firebase 우선, 없으면 localStorage 데모) ---------- */
   (function guestbook() {
