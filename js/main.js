@@ -159,7 +159,11 @@
     function open(i) {
       cur = i;
       resetZoom(false);
-      lbImg.src = 'assets/images/gallery/' + CONFIG.gallery[i];
+      var f = CONFIG.gallery[i];
+      lbImg.src = 'assets/images/gallery/' + f;          // 썸네일 즉시 표시(이미 캐시됨)
+      var hi = new Image();
+      hi.onload = function () { if (cur === i) lbImg.src = 'assets/images/gallery/full/' + f; }; // 고해상도 원본으로 교체
+      hi.src = 'assets/images/gallery/full/' + f;
       lbCount.textContent = (i + 1) + ' / ' + CONFIG.gallery.length;
       lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false');
     }
