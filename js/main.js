@@ -139,28 +139,95 @@
     }
 
     var lb = $('#lightbox'), lbImg = $('#lbImg'), lbCount = $('#lbCount');
+    var stage = lbImg.parentElement;
     var cur = 0;
+
+    // 확대(줌) 상태
+    var scale = 1, tx = 0, ty = 0;
+    function applyT(anim) {
+      lbImg.style.transition = anim ? 'transform .2s ease' : 'none';
+      lbImg.style.transform = 'translate(' + tx + 'px,' + ty + 'px) scale(' + scale + ')';
+    }
+    function resetZoom(anim) { scale = 1; tx = 0; ty = 0; applyT(anim); }
+    function clampPan() {
+      var maxX = Math.max(0, (lbImg.clientWidth * scale - window.innerWidth) / 2 + 30);
+      var maxY = Math.max(0, (lbImg.clientHeight * scale - window.innerHeight) / 2 + 30);
+      tx = Math.max(-maxX, Math.min(maxX, tx));
+      ty = Math.max(-maxY, Math.min(maxY, ty));
+    }
+
     function open(i) {
       cur = i;
+      resetZoom(false);
       lbImg.src = 'assets/images/gallery/' + CONFIG.gallery[i];
       lbCount.textContent = (i + 1) + ' / ' + CONFIG.gallery.length;
       lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false');
     }
     function move(d) { cur = (cur + d + CONFIG.gallery.length) % CONFIG.gallery.length; open(cur); }
+    function close() { lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true'); resetZoom(false); }
+
     grid.addEventListener('click', function (e) {
       var item = e.target.closest('.gallery__item'); if (item) open(+item.dataset.i);
     });
-    $('#lbClose').addEventListener('click', function () { lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true'); });
+    $('#lbClose').addEventListener('click', close);
     $('#lbPrev').addEventListener('click', function () { move(-1); });
     $('#lbNext').addEventListener('click', function () { move(1); });
-    lb.addEventListener('click', function (e) { if (e.target === lb) { lb.classList.remove('open'); } });
-    // 스와이프
-    var sx = 0;
-    lb.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
-    lb.addEventListener('touchend', function (e) {
-      var dx = e.changedTouches[0].clientX - sx;
-      if (Math.abs(dx) > 50) move(dx > 0 ? -1 : 1);
-    });
+    lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+
+    function toggleZoom(pt) {
+      if (scale > 1) { resetZoom(true); }
+      else {
+        scale = 2.5;
+        if (pt) { tx = (window.innerWidth / 2 - pt.clientX) * (scale - 1); ty = (window.innerHeight / 2 - pt.clientY) * (scale - 1); }
+        clampPan(); applyT(true);
+      }
+    }
+
+    // 터치: 핀치 확대 / 드래그 이동 / 스와이프 넘기기 / 더블탭 확대
+    var mode = '', startDist = 0, startScale = 1, panX = 0, panY = 0, swipeX = 0, lastTap = 0;
+    function tdist(t) { return Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY); }
+
+    stage.addEventListener('touchstart', function (e) {
+      if (e.touches.length === 2) { mode = 'pinch'; startDist = tdist(e.touches); startScale = scale; }
+      else if (e.touches.length === 1) {
+        var now = Date.now();
+        if (now - lastTap < 300) { e.preventDefault(); toggleZoom(e.touches[0]); mode = ''; lastTap = 0; return; }
+        lastTap = now;
+        if (scale > 1) { mode = 'pan'; panX = e.touches[0].clientX - tx; panY = e.touches[0].clientY - ty; }
+        else { mode = 'swipe'; swipeX = e.touches[0].clientX; }
+      }
+    }, { passive: false });
+
+    stage.addEventListener('touchmove', function (e) {
+      if (mode === 'pinch' && e.touches.length === 2) {
+        e.preventDefault();
+        scale = Math.max(1, Math.min(5, startScale * tdist(e.touches) / startDist));
+        if (scale <= 1) { tx = 0; ty = 0; }
+        clampPan(); applyT(false);
+      } else if (mode === 'pan' && e.touches.length === 1) {
+        e.preventDefault();
+        tx = e.touches[0].clientX - panX; ty = e.touches[0].clientY - panY;
+        clampPan(); applyT(false);
+      }
+    }, { passive: false });
+
+    stage.addEventListener('touchend', function (e) {
+      if (mode === 'swipe') {
+        var dx = e.changedTouches[0].clientX - swipeX;
+        if (Math.abs(dx) > 50) move(dx > 0 ? -1 : 1);
+      }
+      if (scale <= 1.02) resetZoom(true);
+      mode = '';
+    }, { passive: true });
+
+    // 데스크탑: 더블클릭 / 휠 확대
+    lbImg.addEventListener('dblclick', function (e) { toggleZoom(e); });
+    stage.addEventListener('wheel', function (e) {
+      e.preventDefault();
+      scale = Math.max(1, Math.min(5, scale - e.deltaY * 0.0015));
+      if (scale <= 1) { tx = 0; ty = 0; }
+      clampPan(); applyT(false);
+    }, { passive: false });
   })();
 
   /* ---------- 카카오맵 (키 입력 시 OSM → 카카오맵 교체) ---------- */

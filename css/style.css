@@ -373,8 +373,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: none; align-items: center; justify-content: center;
 }
 .lightbox.open { display: flex; }
-.lightbox__stage { max-width: 92vw; max-height: 84vh; }
-.lightbox__stage img { max-width: 92vw; max-height: 84vh; object-fit: contain; border-radius: 4px; }
+.lightbox__stage { max-width: 92vw; max-height: 84vh; touch-action: none; }
+.lightbox__stage img { max-width: 92vw; max-height: 84vh; object-fit: contain; border-radius: 4px; transform-origin: center center; will-change: transform; }
 .lightbox__close { position: absolute; top: 18px; right: 20px; font-size: 34px; color: #fff; line-height: 1; }
 .lightbox__nav { position: absolute; top: 50%; transform: translateY(-50%); font-size: 44px; color: rgba(255,255,255,.85); padding: 10px 16px; }
 .lightbox__prev { left: 4px; } .lightbox__next { right: 4px; }
