@@ -29,7 +29,7 @@
     },
     // 갤러리: 폴더 저장 순서(01~26.jpg) → g01~g26.jpg, 3열 정사각 썸네일 + 더보기
     galleryInit: 12,
-    gallery: (function () { var a = []; for (var i = 1; i <= 26; i++) a.push('g' + ('0' + i).slice(-2) + '.jpg'); return a; })()
+    gallery: (function () { var a = []; for (var i = 1; i <= 30; i++) a.push('g' + ('0' + i).slice(-2) + '.jpg'); return a; })()
   };
 
   var $ = function (s, c) { return (c || document).querySelector(s); };
